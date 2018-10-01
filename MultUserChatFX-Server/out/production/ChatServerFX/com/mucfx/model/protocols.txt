@@ -1,0 +1,83 @@
+User and Server
+
+1. User --> Server - Commands:
+  * login / logoff;
+  * Status;
+
+2. Server --> User - Commands:
+  * online/offline;
+
+3. User --> User - Commands:
+  * direct messages;
+  * broadcast messages;
+
+
+Commands:
+  login <user> <password>
+  logoff
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Class Protocol
+
+login:nome
+Mensagem enviada do cliente para o servidor para registrar o nome do usu�rio
+Respostas
+login:true
+O nome de usu�rio foi registrado com sucesso
+login:false
+O nome do usu�rio n�o p�de ser registrado pois � inv�lido ou j� est� em uso
+Exemplo:
+login:Jo�o
+lista_usuarios:nomes
+Mensagem enviada do servidor para o cliente quando a lista de usu�rios conectados for atualizada.
+O par�metro nomes deve conter uma lista de nomes separados por ponto e v�rgula.
+Cliente n�o deve responder a mensagem.
+Exemplos:
+lista_usuarios:Jo�o
+lista_usuarios:Jo�o;Maria;Jos�
+mensagem:destinat�rio:texto da mensagem
+Mensagem enviada do cliente para o servidor quando este desejar enviar uma mensagem para os outros usu�rios.
+O par�metro destinat�rio pode ser um nome simples, uma lista de nomes separados por ponto e v�rgula ou asterisco caso a mensagem deva ser enviada para todos os usu�rios.
+O servidor n�o deve responder essa mensagem.
+Exemplos:
+mensagem:Jo�o:Bom dia
+mensagem:Jo�o;Maria:Ol�
+mensagem:*:Bom dia galera!
+transmitir:remetente:destinat�rio:texto da mensagem
+Mensagem enviada do servidor para o cliente quando o cliente � um dos destinat�rios da mensagem.
+O par�metro remetente � o nome do remetente
+O par�metro destinat�rio pode ser o nome de um destinat�rio, uma lista de destinat�rios separada por ponto e v�rgula ou asterisco caso a mensagem seja destinada para todos os usu�rios.
+O cliente n�o deve responder essa mensagem
+Exemplos:
+transmitir:Jo�o:Maria:Ol� Maria, como vai? Aqui � o Jo�o
+transmitir:Maria:Jo�o;Jos�:Voc�s terminaram o trabalho de LP2?
+transmitir:*:Bom dia para todos!
